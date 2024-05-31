@@ -7,6 +7,7 @@ import { ROUTES } from "../../utils/routes";
 import styles from "../../styles/Product.module.css";
 
 import { addItemToCart } from "../../features/user/userSlice";
+import { addToFavorites } from '../../redux/actions';
 
 const SIZES = [4, 4.5, 5];
 
@@ -17,6 +18,10 @@ const Product = (item) => {
 
   const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
+
+  const handleAddToFavorites = () => {
+    dispatch(addToFavorites(item));
+  };
 
   useEffect(() => {
     if (!images.length) return;
@@ -80,7 +85,7 @@ const Product = (item) => {
           >
             Add to cart
           </button>
-          <button className={styles.favourite}>Add to favourites</button>
+          <button onClick={handleAddToFavorites}>Add to favorites</button>
         </div>
 
         <div className={styles.bottom}>
